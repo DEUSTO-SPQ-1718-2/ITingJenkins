@@ -14,6 +14,9 @@ android {
     lintOptions{
         checkReleaseBuilds false
     }
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
     signingConfigs {
         release{
             storeFile file("Iting.jks")
@@ -49,4 +52,6 @@ dependencies {
     compile 'com.sun.mail:android-mail:1.6.0'
     compile 'com.sun.mail:android-activation:1.6.0'
     testCompile 'junit:junit:4.12'
+    testCompile group: 'org.databene', name: 'contiperf', version: '2.2.0'
+
 }
