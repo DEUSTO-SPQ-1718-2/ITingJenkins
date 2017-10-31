@@ -1,5 +1,7 @@
 package com.example.usuario.integrationmaps;
 
+import com.example.usuario.mailsender.GMailSender;
+
 import org.databene.contiperf.PerfTest;
 import org.databene.contiperf.Required;
 import org.junit.Test;
@@ -23,13 +25,10 @@ public class ExampleUnitTest {
     @Required(throughput =  50000000, max = 1)
     public void probarConti() throws Exception{
 
-        try {
-            for (int i = 0; i < 2100000000; i++) {
-                MailsPagadores objeto = new MailsPagadores();
-                objeto.aniadir_conbucle(2);
+        GMailSender objeto = new GMailSender("martinbeitia@opendeusto.es", "password");
+            for (int i = 0; i < 5; i++) {
+                objeto.sendMail("prueba", "probando", "martinbeitia@opendeusto.es", "beitialauaizeta@gmail.com");
             }
-        }catch(Exception e){
 
-        }
     }
 }
