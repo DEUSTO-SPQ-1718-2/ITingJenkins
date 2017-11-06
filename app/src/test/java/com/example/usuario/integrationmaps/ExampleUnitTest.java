@@ -6,6 +6,8 @@ import org.databene.contiperf.PerfTest;
 import org.databene.contiperf.Required;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
 /**
@@ -26,7 +28,6 @@ public class ExampleUnitTest {
                 objeto.sendMail("prueba", "probando", "martinbeitia@opendeusto.es", "beitialauaizeta@gmail.com");
             }
         }catch(Exception e){
-
         }
     }
 
@@ -42,6 +43,21 @@ public class ExampleUnitTest {
             }
         }catch(Exception e){
             System.out.println("Meter logger aquí");
+        }
+    }
+
+    @Test
+    @PerfTest(invocations = 2000000000, threads = 25)
+    @Required(throughput =  50000000, max = 1, median = 45)
+    public void probarContiTres() throws Exception{
+
+        int i;
+        ArrayList<Ciudad> array = new ArrayList<>();
+
+        for(i=0; i < 10; i++) {
+            array.add(i, new Ciudad("Donosti"+i, "Cuadrado"+i));
+            System.out.println(array.toString());
+            System.out.println(array.get(i).getMunicipio());
         }
     }
 }
