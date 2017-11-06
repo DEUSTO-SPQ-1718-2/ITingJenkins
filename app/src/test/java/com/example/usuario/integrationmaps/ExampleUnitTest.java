@@ -15,20 +15,33 @@ import static org.junit.Assert.*;
  */
 public class ExampleUnitTest {
 
-//    @Test
-//    public void addition_isCorrect() throws Exception {
-//        assertEquals(4, 2 + 2);
-//    }
-
     @Test
     @PerfTest(invocations = 2000000000, threads = 9)
-    @Required(throughput =  50000000, max = 1)
+    @Required(throughput =  50000000, max = 1, totalTime = 3000)
     public void probarConti() throws Exception{
 
-        GMailSender objeto = new GMailSender("martinbeitia@opendeusto.es", "password");
+        try {
+            GMailSender objeto = new GMailSender("martinbeitia@opendeusto.es", "password");
             for (int i = 0; i < 5; i++) {
                 objeto.sendMail("prueba", "probando", "martinbeitia@opendeusto.es", "beitialauaizeta@gmail.com");
             }
+        }catch(Exception e){
 
+        }
+    }
+
+    @Test
+    @PerfTest(invocations = 2000000000, threads = 25)
+    @Required(throughput =  50000000, max = 1)
+    public void probarContiDos() throws Exception{
+
+        try {
+            MailsPagadores objeto = new MailsPagadores();
+            for (int i = 0; i < 5; i++) {
+                objeto.aniadir_conbucle(10);
+            }
+        }catch(Exception e){
+            System.out.println("Meter logger aquí");
+        }
     }
 }
