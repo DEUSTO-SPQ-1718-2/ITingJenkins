@@ -28,6 +28,7 @@ public class ExampleUnitTest {
                 objeto.sendMail("prueba", "probando", "martinbeitia@opendeusto.es", "beitialauaizeta@gmail.com");
             }
         }catch(Exception e){
+            e.printStackTrace();
         }
     }
 
