@@ -1,6 +1,7 @@
 package com.example.usuario.codigo_reserva;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.usuario.integrationmaps.pagar;
 import com.example.usuario.mailsender.MailSender;
 
 import org.json.JSONArray;
@@ -182,6 +184,9 @@ public class Gestion_dos_nivel extends Activity{
                             for(int i =0;i<mails.size();i++){
                                 new MailSender("****", mails.get(i), "Lasarte", password).execute();
                             }
+
+                            Intent a = new Intent(getApplicationContext(), pagar.class);
+                            startActivity(a);
 
                         } catch (JSONException e) {
                             e.printStackTrace();

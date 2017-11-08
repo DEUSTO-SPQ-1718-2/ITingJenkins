@@ -1,12 +1,13 @@
 package com.example.usuario.mailsender;
 
 import android.os.AsyncTask;
+import android.widget.Toast;
 
 /**
  * Created by axi_e on 15/10/2017.
  */
 
-public class MailSender extends AsyncTask<String, Integer, Void> {
+public class MailSender extends AsyncTask<String, Integer, String> {
 
     private String nombreEmisor;
     private String nombreReceptor;
@@ -21,9 +22,9 @@ public class MailSender extends AsyncTask<String, Integer, Void> {
     }
 
     @Override
-    protected Void doInBackground(String... strings) {
+    protected String doInBackground(String... strings) {
         envio_mail(nombreEmisor, nombreReceptor, restaurante, codReserva);
-        return null;
+        return "Enviado";
     }
 
     public void envio_mail(String nombreEmisor, String nombreReceptor, String restaurante, String codReserva){
@@ -47,8 +48,16 @@ public class MailSender extends AsyncTask<String, Integer, Void> {
             sender.sendMail("[Iting] " + nombreEmisor +   " te ha invitado a comer", body, "noreply.iting@gmail.com", nombreReceptor);
 
         } catch (Exception e){
+            System.out.println("Es el primero");
+            //Toast.makeText((), "Cuenta de correo electronico incorrecta", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
     }
 
+    @Override
+    protected void onPostExecute(String s) {
+        System.out.println("¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿");
+        System.out.println(s);
+        //super.onPostExecute(s);
+    }
 }

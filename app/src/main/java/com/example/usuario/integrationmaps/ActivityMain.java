@@ -73,7 +73,7 @@ public class ActivityMain extends AppCompatActivity {
 
     public void obtener_mesas(){
 
-        String URL_DATA = "http://www.iting.es/php_Cerro/obtener_mesas_rest_newDB.php";
+        String URL_DATA = "http://www.iting.es/ultimophp/obtener_mesas_rest_newDB2.php";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
                 new Response.Listener<String>(){
@@ -82,6 +82,7 @@ public class ActivityMain extends AppCompatActivity {
 
                         try {
                             JSONArray jsonArray = new JSONArray(response);
+                            System.out.println(response);
                             for(int i =0;i<jsonArray.length();i++) {
                                 System.out.println(jsonArray.length());
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -91,7 +92,7 @@ public class ActivityMain extends AppCompatActivity {
                                         jsonObject.getString("nombre"),
                                         jsonObject.getString("comensales"),
                                         jsonObject.getString("ocupado"),
-                                        jsonObject.getString("vinculado"),
+                                        "",
                                         jsonObject.getString("id_restaurante")
 
                                 );
@@ -117,7 +118,7 @@ public class ActivityMain extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("restaurante_id", "11" );
+                params.put("restaurante_id", "26" );
                 return params;
             }
         };

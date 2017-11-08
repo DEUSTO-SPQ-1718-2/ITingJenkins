@@ -373,7 +373,6 @@ public class primer_listado_rests extends AppCompatActivity implements  View.OnC
 
 
     //Tema boomMenu!!!
-
     private void initBoom() {
         int number = 3;
 
