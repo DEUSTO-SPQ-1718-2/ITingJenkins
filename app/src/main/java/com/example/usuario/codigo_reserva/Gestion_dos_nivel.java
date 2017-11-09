@@ -18,6 +18,8 @@ import com.example.usuario.mailsender.MailSender;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,6 +37,8 @@ public class Gestion_dos_nivel extends Activity{
     Reserva reserva;
     int contador=0;
     int i =0;
+    Logger log = LoggerFactory.getLogger(Gestion_dos_nivel.class);
+
     abstract class Encryptor {
         SecretKey key;
 
@@ -44,12 +48,15 @@ public class Gestion_dos_nivel extends Activity{
 
         abstract String decrypt(String ciphertext, String password);
 
+
         String getRawKey() {
             if (key == null) {
                 return null;
             }
 
             return Crypto_dos_nivel.toHex(key.getEncoded());
+
+
         }
     }
 
@@ -65,7 +72,8 @@ public class Gestion_dos_nivel extends Activity{
         public String encrypt(String plaintext, String password) {
             byte[] salt = Crypto_dos_nivel.generateSalt();
             key = deriveKey(password, salt);
-            Log.d(TAG, "Generated key: " + getRawKey());
+            //Log.d(TAG, "Generated key: " + getRawKey());
+            log.debug("Se ha generado la clave: " + getRawKey());
 
             return Crypto_dos_nivel.encrypt(plaintext, key, salt);
         }
@@ -121,7 +129,8 @@ public class Gestion_dos_nivel extends Activity{
                 return doCrypto();
             } catch (Exception e) {
                 error = e;
-                Log.e(TAG, "Error: " + e.getMessage(), e);
+                //log.e(TAG, "Error: " + e.getMessage(), e);
+                log.error("Error encontrado: " + e.getMessage());
 
                 return null;
             }
@@ -137,10 +146,12 @@ public class Gestion_dos_nivel extends Activity{
                         "Error: " + error.getMessage(), Toast.LENGTH_LONG)
                         .show();
                 fallo ="si";
+                log.error("El codigo introducido no existe o ya no es valido: " + error.getMessage());
             }
 
             if(fallo.equals("no")){
                 fallo= result;
+
             }
             updateUi(fallo);
         }

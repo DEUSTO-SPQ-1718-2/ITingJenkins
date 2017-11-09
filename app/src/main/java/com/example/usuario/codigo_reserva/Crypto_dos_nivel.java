@@ -3,6 +3,9 @@ package com.example.usuario.codigo_reserva;
 import android.util.Base64;
 import android.util.Log;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
 import java.security.SecureRandom;
@@ -30,6 +33,8 @@ public class Crypto_dos_nivel {
     private static int ITERATION_COUNT = 1000;
     private static final int PKCS5_SALT_LENGTH = 8;
 
+    private static final Logger log = LoggerFactory.getLogger(Gestion_dos_nivel.class);
+
     private static SecureRandom random = new SecureRandom();
 
     private Crypto_dos_nivel() {
@@ -43,7 +48,9 @@ public class Crypto_dos_nivel {
             SecretKeyFactory keyFactory = SecretKeyFactory
                     .getInstance(PBKDF2_DERIVATION_ALGORITHM);
             byte[] keyBytes = keyFactory.generateSecret(keySpec).getEncoded();
-            Log.d(TAG, "key bytes: " + toHex(keyBytes));
+            //Log.d(TAG, "key bytes: " + toHex(keyBytes));
+            log.debug("Bytes de la clave: "+toHex(keyBytes));
+
 
             SecretKey result = new SecretKeySpec(keyBytes, "AES");
             long elapsed = System.currentTimeMillis() - start;

@@ -7,10 +7,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class introducir_codigo extends AppCompatActivity {
 
     Button check;
     EditText primero, segundo, tercero, cuarto, qinto, sexto;
+    Logger log = LoggerFactory.getLogger(introducir_codigo.class);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +38,9 @@ public class introducir_codigo extends AppCompatActivity {
             public void onClick(View v) {
                 System.out.println(primero.getText());
                 String nombre = primero.getText().toString()+segundo.getText().toString()+tercero.getText().toString()+cuarto.getText().toString()+qinto.getText().toString()+sexto.getText().toString();
+
+                log.debug("Los numeros recogidos en el codigo son "+nombre);
+
                 /*Intent intent = new Intent();
                 Bundle a = new Bundle();
 
@@ -41,8 +48,6 @@ public class introducir_codigo extends AppCompatActivity {
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 getApplicationContext().startActivity(intent);*/
 
-                System.out.println(nombre);
-                System.out.println("patricia");
 
                 Intent intent = new Intent();
                 intent.setClass(getApplicationContext(), com.example.usuario.codigo_reserva.Gestion_dos_nivel.class);
