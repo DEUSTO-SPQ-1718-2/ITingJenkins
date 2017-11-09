@@ -1,5 +1,8 @@
 package com.example.usuario.integrationmaps;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 
 /**
@@ -13,6 +16,7 @@ public class mesa {
     public ArrayList<Integer> vinculadas;
     boolean ocupado;
     boolean seleccionado;
+    Logger log = LoggerFactory.getLogger(ActivityMain.class);
 
     public mesa(String id, String nombre,  String comensales, String ocupado, String vinculadas, String restaurante) {
         this.id = id;
@@ -28,7 +32,7 @@ public class mesa {
                 this.vinculadas.add(Integer.parseInt(parts[i]));
             }
         }
-        System.out.print("**************"+ocupado);
+        log.debug("Valor de ocupado: " + ocupado);
         if(ocupado.equals("0")){
             this.ocupado= false;
         }else{

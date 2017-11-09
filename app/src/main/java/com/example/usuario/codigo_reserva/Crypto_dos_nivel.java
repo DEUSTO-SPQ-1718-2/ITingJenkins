@@ -54,8 +54,8 @@ public class Crypto_dos_nivel {
 
             SecretKey result = new SecretKeySpec(keyBytes, "AES");
             long elapsed = System.currentTimeMillis() - start;
-            Log.d(TAG, String.format("PBKDF2 key derivation took %d [ms].",
-                    elapsed));
+           // Log.d(TAG, String.format("PBKDF2 key derivation took %d [ms].", elapsed));
+            log.debug("La derivación PBKDF2 de la clave ha llevado %d [ms]", elapsed);
 
             return result;
         } catch (GeneralSecurityException e) {
@@ -84,11 +84,15 @@ public class Crypto_dos_nivel {
             Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);
 
             byte[] iv = generateIv(cipher.getBlockSize());
-            Log.d(TAG, "IV: " + toHex(iv));
+            //Log.d(TAG, "IV: " + toHex(iv));
+            log.debug("IV: "+ toHex(iv));
+
             IvParameterSpec ivParams = new IvParameterSpec(iv);
             cipher.init(Cipher.ENCRYPT_MODE, key, ivParams);
-            Log.d(TAG, "Cipher IV: "
+            //Log.d(TAG, "Cipher IV: "+ (cipher.getIV() == null ? null : toHex(cipher.getIV())));
+            log.debug("Cifrado IV: "
                     + (cipher.getIV() == null ? null : toHex(cipher.getIV())));
+
             byte[] cipherText = cipher.doFinal(plaintext.getBytes("UTF-8"));
 
             if (salt != null) {
@@ -128,12 +132,13 @@ public class Crypto_dos_nivel {
             Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);
             IvParameterSpec ivParams = new IvParameterSpec(iv);
             cipher.init(Cipher.DECRYPT_MODE, key, ivParams);
-            Log.d(TAG, "Cipher IV: " + toHex(cipher.getIV()));
-            System.out.println("******probemos los bytes"+cipherBytes);
+            //Log.d(TAG, "Cipher IV: " + toHex(cipher.getIV()));
+            log.debug("Cifrado IV: " + toHex(cipher.getIV()));
+            log.warn("******probamos los bytes " + cipherBytes);
             byte[] plaintext = cipher.doFinal(cipherBytes);
-            System.out.println("joder+"+"Texto descifrado");
             String plainrStr = new String(plaintext, "UTF-8");
-            System.out.println(plainrStr+"Texto descifrado");
+            log.info("Texto cifrado: " + plainrStr);
+            //System.out.println(plainrStr+"Texto descifrado");
             return plainrStr;
         } catch (GeneralSecurityException e) {
             throw new RuntimeException(e);
@@ -145,14 +150,15 @@ public class Crypto_dos_nivel {
     public static String decryptPbkdf2(String ciphertext, String password) {
         String[] fields = ciphertext.split(DELIMITER);
         if (fields.length != 3) {
-            throw new IllegalArgumentException("Invalid encypted text format");
+            throw new IllegalArgumentException("Invalid encrypted text format");
         }
 
         byte[] salt = fromBase64(fields[0]);
         byte[] iv = fromBase64(fields[1]);
         byte[] cipherBytes = fromBase64(fields[2]);
         SecretKey key = deriveKeyPbkdf2(salt, password);
-        System.out.println("PASAAAAAAAAAAAA");
+        log.debug("Pasa por la desencriptacion! ");
+        //System.out.println("PASAAAAAAAAAAAA");
         return decrypt(cipherBytes, key, iv);
     }
 

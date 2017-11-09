@@ -26,6 +26,10 @@ import com.braintreepayments.api.dropin.DropInResult;
 import com.braintreepayments.api.interfaces.HttpResponseCallback;
 import com.braintreepayments.api.internal.HttpClient;
 import com.braintreepayments.api.models.PaymentMethodNonce;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,6 +47,8 @@ public class pagar extends AppCompatActivity {
     Button btnPay;
     EditText etAmount;
     LinearLayout llHolder;
+
+    Logger log = LoggerFactory.getLogger(pagar.class);
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -75,7 +81,9 @@ public class pagar extends AppCompatActivity {
                 DropInResult result = data.getParcelableExtra(DropInResult.EXTRA_DROP_IN_RESULT);
                 PaymentMethodNonce nonce = result.getPaymentMethodNonce();
                 String stringNonce = nonce.getNonce();
-                Log.d("mylog", "Resultaaada: " + stringNonce);
+                //Log.d("mylog", "Resultaaada: " + stringNonce);
+                log.debug("Clase pagar, contenido del nonce: " + stringNonce);
+
                 // Send payment price with the nonce
                 // use the result to update your UI and send the payment method nonce to your server
                 if (!etAmount.getText().toString().isEmpty()) {
@@ -89,11 +97,13 @@ public class pagar extends AppCompatActivity {
 
             } else if (resultCode == Activity.RESULT_CANCELED) {
                 // the user canceled
-                Log.d("mylog", "user canceled");
+                //Log.d("mylog", "user canceled");
+                log.error("La actividad de pagar ha sido cancelada, usuario cancelado ");
             } else {
                 // handle errors here, an exception may be available in
                 Exception error = (Exception) data.getSerializableExtra(DropInActivity.EXTRA_ERROR);
-                Log.d("mylog", "Error : " + error.toString());
+                //Log.d("mylog", "Error : " + error.toString());
+                log.debug("Error : " + error.toString());
             }
         }
     }
@@ -116,8 +126,9 @@ public class pagar extends AppCompatActivity {
                             Toast.makeText(pagar.this, "Transaction successful", Toast.LENGTH_LONG).show();
                         }
                         else Toast.makeText(pagar.this, "Transaction failed", Toast.LENGTH_LONG).show();
-                        Log.d("mylog", "Final Response: " + response.toString());
-                        System.out.println("AXI " + response.toString());
+                        //Log.d("mylog", "Final Response: " + response.toString());
+                        log.debug("El resultado ha sido Final Response: " + response.toString());
+                        //System.out.println("AXI " + response.toString());
 
                         //Menu de inicio.
 
@@ -127,6 +138,7 @@ public class pagar extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("mylog", "Volley error : " + error.toString());
+                log.debug("Error de volley: " + error.toString());
             }
         }) {
             @Override
@@ -136,7 +148,8 @@ public class pagar extends AppCompatActivity {
                 Map<String, String> params = new HashMap<>();
                 for (String key : paramHash.keySet()) {
                     params.put(key, paramHash.get(key));
-                    Log.d("mylog", "Key : " + key + " Value : " + paramHash.get(key));
+                    //Log.d("mylog", "Key : " + key + " Value : " + paramHash.get(key));
+                    log.debug("Clave : " + key + " Valor : " + paramHash.get(key));
                 }
 
                 return params;
@@ -171,10 +184,12 @@ public class pagar extends AppCompatActivity {
             client.get(get_token, new HttpResponseCallback() {
                 @Override
                 public void success(String responseBody) {
-                    Log.d("mylog", responseBody);
+                    //Log.d("mylog", responseBody);
+                    log.debug("Exitoso: " + responseBody);
 
                     token = responseBody;
-                    System.out.println("TOKEEEEN: " + token);
+                    //System.out.println("TOKEEEEN: " + token);
+                    log.debug("Este es el token: " + token);
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {

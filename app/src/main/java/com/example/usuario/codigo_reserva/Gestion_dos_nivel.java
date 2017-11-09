@@ -271,7 +271,7 @@ public class Gestion_dos_nivel extends Activity{
                     public void onResponse(String response) {
 
                         try {
-                            System.out.println("que conio");
+                            log.debug("Esta entrando a recuperar reserva desde codigo existente.");
                             JSONArray jsonArray = new JSONArray(response);
                             for(int i =0;i<jsonArray.length();i++) {
 
@@ -285,7 +285,7 @@ public class Gestion_dos_nivel extends Activity{
                             }
 
                             desencriptar(0);
-                            System.out.println("que cojones");
+                            log.debug("Ha llegado al metodo desencriptar!");
 
                         } catch (JSONException e) {
                             e.printStackTrace();

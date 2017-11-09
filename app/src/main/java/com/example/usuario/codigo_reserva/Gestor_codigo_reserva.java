@@ -14,6 +14,9 @@ import android.widget.Toast;
 
 import com.example.usuario.integrationmaps.R;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.math.BigInteger;
 import java.util.ArrayList;
 
@@ -24,6 +27,7 @@ public class Gestor_codigo_reserva extends Activity {
     private static final String TAG = Gestor_codigo_reserva.class.getSimpleName();
     Button button;
     String para_envio;
+    Logger log = LoggerFactory.getLogger(Gestor_codigo_reserva.class);
 
     abstract class Encryptor {
         SecretKey key;
@@ -55,7 +59,9 @@ public class Gestor_codigo_reserva extends Activity {
         public String encrypt(String plaintext, String password) {
             byte[] salt = Crypto.generateSalt();
             key = deriveKey(password, salt);
-            Log.d(TAG, "Generated key: " + getRawKey());
+            //Log.d(TAG, "Generated key: " + getRawKey());
+            log.debug("Clave genarada: " +  getRawKey());
+
 
             return "";
         }
@@ -150,7 +156,8 @@ public class Gestor_codigo_reserva extends Activity {
                 for (Integer i : numeros_final) { // assuming list is of type List<Integer>
                     pasar = 10*pasar + i;
                 }
-                System.out.println("NUMEOR ALEATORIO "+pasar);
+                //System.out.println("NUMEOR ALEATORIO "+pasar);
+                log.debug("El numero aleatorio: " +  pasar);
 
                 Intent intent = new Intent();
                 intent.setClass(getApplicationContext(), Gestion_dos_nivel.class);
@@ -193,7 +200,8 @@ public class Gestor_codigo_reserva extends Activity {
                 return doCrypto();
             } catch (Exception e) {
                 error = e;
-                Log.e(TAG, "Error: " + e.getMessage(), e);
+                //Log.e(TAG, "Error: " + e.getMessage(), e);
+                log.error("Error: " + e.getMessage());
 
                 return null;
             }

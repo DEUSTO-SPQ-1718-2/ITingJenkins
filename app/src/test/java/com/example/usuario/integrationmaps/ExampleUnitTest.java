@@ -5,6 +5,8 @@ import com.example.usuario.mailsender.GMailSender;
 import org.databene.contiperf.PerfTest;
 import org.databene.contiperf.Required;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 
@@ -16,6 +18,8 @@ import static org.junit.Assert.*;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class ExampleUnitTest {
+
+    Logger log = LoggerFactory.getLogger(ActivityMain.class);
 
     @Test
     @PerfTest(invocations = 2000000000, threads = 9)
@@ -43,7 +47,7 @@ public class ExampleUnitTest {
                 objeto.aniadir_conbucle(10);
             }
         }catch(Exception e){
-            System.out.println("Meter logger aquí");
+            log.error(String.valueOf(e));
         }
     }
 

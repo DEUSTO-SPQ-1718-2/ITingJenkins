@@ -3,6 +3,9 @@ package com.example.usuario.mailsender;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Created by axi_e on 15/10/2017.
  */
@@ -13,6 +16,7 @@ public class MailSender extends AsyncTask<String, Integer, String> {
     private String nombreReceptor;
     private String restaurante;
     private String codReserva;
+    Logger log = LoggerFactory.getLogger(MailSender.class);
 
     public MailSender(String nombreEmisor, String nombreReceptor, String restaurante, String codReserva){
         this.nombreEmisor = nombreEmisor;
@@ -48,16 +52,20 @@ public class MailSender extends AsyncTask<String, Integer, String> {
             sender.sendMail("[Iting] " + nombreEmisor +   " te ha invitado a comer", body, "noreply.iting@gmail.com", nombreReceptor);
 
         } catch (Exception e){
-            System.out.println("Es el primero");
+            log.warn("Es el primero");
+            //System.out.println("Es el primero");
             //Toast.makeText((), "Cuenta de correo electronico incorrecta", Toast.LENGTH_LONG).show();
+
             e.printStackTrace();
         }
     }
 
     @Override
     protected void onPostExecute(String s) {
-        System.out.println("¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿");
-        System.out.println(s);
+        log.debug("Onpost Execute de Mail Sender.");
+        log.debug(s);
+        //System.out.println("¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿");
+        //System.out.println(s);
         //super.onPostExecute(s);
     }
 }

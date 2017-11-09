@@ -28,6 +28,8 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -45,6 +47,7 @@ public class ActivityMain extends AppCompatActivity {
     Bitmap[] logos;
     Bitmap [] logo_ocupado;
     Button confirmar;
+    Logger log = LoggerFactory.getLogger(ActivityMain.class);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +77,7 @@ public class ActivityMain extends AppCompatActivity {
     public void obtener_mesas(){
 
         String URL_DATA = "http://www.iting.es/ultimophp/obtener_mesas_rest_newDB2.php";
+        log.debug("Se esta atacando la base de datos: " + URL_DATA);
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
                 new Response.Listener<String>(){
@@ -83,10 +87,13 @@ public class ActivityMain extends AppCompatActivity {
                         try {
                             JSONArray jsonArray = new JSONArray(response);
                             System.out.println(response);
+                            log.debug("La respuesta del metodo obtener mesas: " +  response);
                             for(int i =0;i<jsonArray.length();i++) {
-                                System.out.println(jsonArray.length());
+                                //System.out.println(jsonArray.length());
+                                log.debug("Tamaño del array: " + jsonArray.length());
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                System.out.println(jsonObject.getString("ocupado")+"jaaaaaa");
+                                //System.out.println(jsonObject.getString("ocupado")+"jaaaaaa");
+                                log.debug("Valor de vble ocupado: " + jsonObject.getString("ocupado"));
                                 mesa mes =  new mesa(
                                         jsonObject.getString("id"),
                                         jsonObject.getString("nombre"),
