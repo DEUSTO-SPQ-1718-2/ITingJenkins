@@ -29,7 +29,7 @@ public class Gestion_dos_nivel extends Activity{
 
     private static final String TAG = Gestion_dos_nivel.class.getSimpleName();
     private static String MESSAGE="vamos";
-    private String password = "012345";//Por eso he hecho un numero super aleatorio. Ya que con dos mismos passwords se puede llegar a entrar.
+    private String password = "213414";//Por eso he hecho un numero super aleatorio. Ya que con dos mismos passwords se puede llegar a entrar.
     //Por eso la aleatoriedad, ya que podría estar esperando al final del dia y el 0001 siempre siempre siempre caerá!
     ArrayList<Reserva> reservas;
     Reserva reserva;
@@ -53,6 +53,14 @@ public class Gestion_dos_nivel extends Activity{
         }
     }
 
+    public void setReservas(ArrayList<Reserva> a){
+        reservas= a;
+    }
+
+    public ArrayList<Reserva> getReservas(){
+     return reservas;
+    }
+
 
     private final Encryptor PBKDF2_ENCRYPTOR = new Encryptor() {
 
@@ -72,6 +80,7 @@ public class Gestion_dos_nivel extends Activity{
 
         @Override
         public String decrypt(String ciphertext, String password) {
+            System.out.println("vamos");
             return Crypto_dos_nivel.decryptPbkdf2(ciphertext, password);
         }
     };
@@ -86,7 +95,6 @@ public class Gestion_dos_nivel extends Activity{
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         Bundle bundle = getIntent().getExtras();
         int intermedio;
@@ -94,7 +102,7 @@ public class Gestion_dos_nivel extends Activity{
         para_envio = bundle.getString("mails_formateado");
         mails=bundle.getStringArrayList("mails");
         int booleano= bundle.getInt("encriptar");
-
+        System.out.println("vamos");
         MESSAGE = String.valueOf(intermedio);
         this.password = String.valueOf(intermedio);
         encryptor = PBKDF2_ENCRYPTOR;
@@ -216,7 +224,7 @@ public class Gestion_dos_nivel extends Activity{
 
         i = parmetro;
         ciphertext1 = reservas.get(i).getCodigo();
-        System.out.println("DESENCRIPTAR-> PASSWORD"+password);
+        System.out.println("DESENCRIPTAR-> PASSWORD "+password);
         System.out.println("CIFRADO->"+ ciphertext1);
 
         new CryptoTask() {
@@ -229,6 +237,7 @@ public class Gestion_dos_nivel extends Activity{
 
 
             protected void updateUi(String plaintext1) {
+
                 if(plaintext1.equals("si")){
                     contador=contador+1;
                 }
