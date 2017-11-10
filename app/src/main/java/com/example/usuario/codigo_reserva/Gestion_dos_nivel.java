@@ -191,7 +191,7 @@ public class Gestion_dos_nivel extends Activity{
     public void update_DB(){
 
         final String mesa_id="1";
-        String URL_DATA = "http://www.iting.es/php_Cerro/insertar_reserva_newDB.php";
+        String URL_DATA = "http://www.iting.es/ultimophp/insertar_reserva_newDB.php";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
                 new Response.Listener<String>(){
@@ -273,7 +273,7 @@ public class Gestion_dos_nivel extends Activity{
 
 
     public void  recuperar_reservas(){
-        String URL_DATA = "http://www.iting.es/php_Cerro/recuperar_reservas_newDB.php";
+        String URL_DATA = "http://www.iting.es/ultimophp/recuperar_reservas_newDB.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
                 new Response.Listener<String>(){
                     @Override
