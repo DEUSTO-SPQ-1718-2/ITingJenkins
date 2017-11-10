@@ -26,7 +26,7 @@ public class MailSender extends AsyncTask<String, Integer, Void> {
         return null;
     }
 
-    public void envio_mail(String nombreEmisor, String nombreReceptor, String restaurante, String codReserva){
+    public boolean envio_mail(String nombreEmisor, String nombreReceptor, String restaurante, String codReserva){
 
         try{
 
@@ -46,8 +46,12 @@ public class MailSender extends AsyncTask<String, Integer, Void> {
 
             sender.sendMail("[Iting] " + nombreEmisor +   " te ha invitado a comer", body, "noreply.iting@gmail.com", nombreReceptor);
 
+            return true;
+
         } catch (Exception e){
             e.printStackTrace();
+
+            return false;
         }
     }
 

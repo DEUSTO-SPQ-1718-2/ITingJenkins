@@ -67,11 +67,13 @@ public class ActivityMain extends AppCompatActivity {
         logo_ocupado[0] = BitmapFactory.decodeResource(getResources(), R.drawable.mesaocupada);
         logo_ocupado[1] = BitmapFactory.decodeResource(getResources(), R.drawable.mesaseleccionada);
         mesas = new ArrayList<>();
-        obtener_mesas();
+
 
     }
 
-    public void obtener_mesas(){
+    public boolean obtener_mesas(){
+
+
 
         String URL_DATA = "http://www.iting.es/php_Cerro/obtener_mesas_rest_newDB.php";
 
@@ -102,9 +104,10 @@ public class ActivityMain extends AppCompatActivity {
                             rvMain.setLayoutManager(new GridLayoutManager(ActivityMain.this, 3));
                             rvMain.setAdapter(adapter);
 
-
                         } catch (JSONException e) {
                             e.printStackTrace();
+
+
                         }
                     }
                 },new Response.ErrorListener() {
@@ -112,6 +115,8 @@ public class ActivityMain extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(), "Algo ha ido mal", Toast.LENGTH_LONG).show();
                 error.printStackTrace();
+
+
             }
         }){
             @Override
@@ -122,7 +127,14 @@ public class ActivityMain extends AppCompatActivity {
             }
         };
 
+
+
         Mysingleton.getnInstance(this).addToRequestQue(stringRequest);
+
+        return stringRequest.toString().contains("null");
+
+
+
     }
 
 

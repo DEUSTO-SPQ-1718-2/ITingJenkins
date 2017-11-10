@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
                         count++;
                     } catch (JSONException e) {
                         e.printStackTrace();
+
                     }
                 }
                 adapter = new MyAdapter(listItems, getApplicationContext());
@@ -84,11 +85,14 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Algo ha ido mal", Toast.LENGTH_LONG).show();
                 error.printStackTrace();
 
+
             }
         });
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
+
+
 
     }
 }
