@@ -31,7 +31,7 @@ public class MailSender extends AsyncTask<String, Integer, String> {
         return "Enviado";
     }
 
-    public void envio_mail(String nombreEmisor, String nombreReceptor, String restaurante, String codReserva){
+    public boolean envio_mail(String nombreEmisor, String nombreReceptor, String restaurante, String codReserva){
 
         try{
 
@@ -51,12 +51,16 @@ public class MailSender extends AsyncTask<String, Integer, String> {
 
             sender.sendMail("[Iting] " + nombreEmisor +   " te ha invitado a comer", body, "noreply.iting@gmail.com", nombreReceptor);
 
+            return true;
+
         } catch (Exception e){
             log.warn("Es el primero");
             //System.out.println("Es el primero");
             //Toast.makeText((), "Cuenta de correo electronico incorrecta", Toast.LENGTH_LONG).show();
 
             e.printStackTrace();
+
+            return false;
         }
     }
 
