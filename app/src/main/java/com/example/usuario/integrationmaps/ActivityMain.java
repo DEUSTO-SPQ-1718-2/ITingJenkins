@@ -70,7 +70,7 @@ public class ActivityMain extends AppCompatActivity {
         logo_ocupado[0] = BitmapFactory.decodeResource(getResources(), R.drawable.mesaocupada);
         logo_ocupado[1] = BitmapFactory.decodeResource(getResources(), R.drawable.mesaseleccionada);
         mesas = new ArrayList<>();
-
+        this.obtener_mesas();
 
     }
 
