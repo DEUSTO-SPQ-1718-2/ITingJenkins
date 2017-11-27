@@ -25,7 +25,6 @@ public class Respuesta implements Response.Listener<String> {
     private int state = 0;
 
     public Respuesta(){
-        super();
         mesas = new ArrayList<mesa>();
     }
 

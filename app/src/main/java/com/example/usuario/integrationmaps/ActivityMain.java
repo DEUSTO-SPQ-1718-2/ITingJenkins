@@ -49,6 +49,7 @@ public class ActivityMain extends AppCompatActivity {
     Bitmap [] logo_ocupado;
     Button confirmar;
     Logger log = LoggerFactory.getLogger(ActivityMain.class);
+    int state = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,13 +81,56 @@ public class ActivityMain extends AppCompatActivity {
         String URL_DATA = "http://www.iting.es/ultimophp/obtener_mesas_rest_newDB2.php";
         log.debug("Se esta atacando la base de datos: " + URL_DATA);
 
-        Respuesta respuesta = new Respuesta();
+        // Respuesta respuesta = new Respuesta();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
-              respuesta ,new Response.ErrorListener() {
+              new Response.Listener<String>(){
+
+                  @Override
+                  public void onResponse(String response) {
+
+                      try {
+                          JSONArray jsonArray = new JSONArray(response);
+                          System.out.println(response);
+                          log.debug("La respuesta del metodo obtener mesas: " +  response);
+                          for(int i =0;i<jsonArray.length();i++) {
+                              //System.out.println(jsonArray.length());
+                              log.debug("Tamaño del array: " + jsonArray.length());
+                              JSONObject jsonObject = jsonArray.getJSONObject(i);
+                              //System.out.println(jsonObject.getString("ocupado")+"jaaaaaa");
+                              log.debug("Valor de vble ocupado: " + jsonObject.getString("ocupado"));
+                              mesa mes =  new mesa(
+                                      jsonObject.getString("id"),
+                                      jsonObject.getString("nombre"),
+                                      jsonObject.getString("comensales"),
+                                      jsonObject.getString("ocupado"),
+                                      "",
+                                      jsonObject.getString("id_restaurante")
+
+                              );
+                              mesas.add(mes);
+
+                          }
+
+                          ActivityMain.MyAdapter adapter = new ActivityMain.MyAdapter(mesas, logos);
+                          rvMain.setLayoutManager(new GridLayoutManager(ActivityMain.this, 3));
+                          rvMain.setAdapter(adapter);
+
+                          System.out.println("Paso para cambiar el estado a 1");
+                          state = 1;
+
+                      } catch (JSONException e) {
+                          e.printStackTrace();
+                          System.out.println("Paso para cambiar el estado a -1");
+                          state = -1;
+                      }
+                  }
+
+              } ,new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(), "Algo ha ido mal", Toast.LENGTH_LONG).show();
+                System.out.println("Pasa por el onError Response");
                 error.printStackTrace();
             }
         }){
@@ -94,39 +138,29 @@ public class ActivityMain extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("restaurante_id", "26" );
+                System.out.println("Pasa por el getParams");
                 return params;
             }
         };
 
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
+        Mysingleton.getnInstance(this).addToRequestQue(stringRequest);
 
         int i = 0;
 
-        while(respuesta.getState() == 0){
+        System.out.println("Pasa con estado " + state);
 
-            if(i == 0){
-                System.out.println("me he quedau en el while");
-                i++;
-            }
-
-        }
-
-        System.out.println("Pasa con estado " + respuesta.getState());
-
-        ActivityMain.MyAdapter adapter = new ActivityMain.MyAdapter(mesas, logos);
-        rvMain.setLayoutManager(new GridLayoutManager(ActivityMain.this, 3));
-        rvMain.setAdapter(adapter);
-
-        Mysingleton.getnInstance(this).addToRequestQue(stringRequest);
-
-        if(respuesta.getState() == 1){
+        if(state == 1){
 
             return true;
         } else{
 
             return false;
         }
+    }
+
+    public int getState(){
+
+        return state;
     }
 
 

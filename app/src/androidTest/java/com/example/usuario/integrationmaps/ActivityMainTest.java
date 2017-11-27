@@ -26,9 +26,14 @@ public class ActivityMainTest {
 
         activityRule.launchActivity(intent);
 
-        assertTrue(activityRule.getActivity().obtener_mesas());
+        while(activityRule.getActivity().getState() == 0){
 
 
+        }
+
+        System.out.println("Tamaño mesas: " + activityRule.getActivity().mesas.size());
+
+        assertEquals(1, activityRule.getActivity().getState());
     }
 
 }
