@@ -26,6 +26,8 @@ public class ActivityMainTest {
 
         activityRule.launchActivity(intent);
 
+        assertTrue(activityRule.getActivity().obtener_mesas());
+
 
     }
 
