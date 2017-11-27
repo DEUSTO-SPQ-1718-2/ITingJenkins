@@ -294,6 +294,7 @@ public class Gestion_dos_nivel extends Activity{
                             }
 
                             desencriptar(0);
+
                             log.debug("Ha llegado al metodo desencriptar!");
 
                         } catch (JSONException e) {

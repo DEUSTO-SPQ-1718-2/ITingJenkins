@@ -39,5 +39,6 @@ public class Mesas_1Test {
     public void objectHasSummaryProperty () {
         assertThat(a, hasProperty("id"));
         assertThat(a, hasProperty("id", equalTo("1")));
+        assertThat(a.getNombre(), length(is(3)));
     }
 }

@@ -39,8 +39,8 @@ public class pagar extends AppCompatActivity {
 
 
     final int REQUEST_CODE = 1;
-    final String get_token = "http://10.206.48.101/BraintreePayments/main.php";
-    final String send_payment_details = "http://10.206.48.101/BraintreePayments/checkout.php";
+    final String get_token = "http://192.168.91.1/BraintreePayments/main.php";
+    final String send_payment_details = "http://192.168.91.1/BraintreePayments/checkout.php";
     String token, amount;
     HashMap<String, String> paramHash;
 

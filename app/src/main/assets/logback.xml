@@ -12,7 +12,7 @@
 
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
 
-        <file>/Memoria Interna/log.txt</file>
+        <file>/storage/emulated/0/log.txt</file>
         <append>true</append>
         <!-- set immediateFlush to false for much higher logging throughput -->
         <immediateFlush>true</immediateFlush>
