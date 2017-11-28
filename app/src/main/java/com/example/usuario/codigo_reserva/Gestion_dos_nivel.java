@@ -39,6 +39,8 @@ public class Gestion_dos_nivel extends Activity{
     int i =0;
     Logger log = LoggerFactory.getLogger(Gestion_dos_nivel.class);
 
+    private int state = 0;
+
     abstract class Encryptor {
         SecretKey key;
 
@@ -155,10 +157,12 @@ public class Gestion_dos_nivel extends Activity{
                         .show();
                 fallo ="si";
                 log.error("El codigo introducido no existe o ya no es valido: " + error.getMessage());
+
             }
 
             if(fallo.equals("no")){
                 fallo= result;
+
 
             }
             updateUi(fallo);
@@ -254,12 +258,19 @@ public class Gestion_dos_nivel extends Activity{
                 }
                 else {
                     System.out.println("resultado"+plaintext1);
+                    state = 1;
+                    System.out.println("Pasa por el state 1 !!!");
                     return;
                 }
 
                 i= i+1;
                 if(i==reservas.size()){
                     System.out.println("TERMINADO!!");
+
+                    if(state == 0){
+
+                        state = -1;
+                    }
                 }else{
                     System.out.println("Siguiente bucle!!");
                     desencriptar(i);
@@ -309,5 +320,10 @@ public class Gestion_dos_nivel extends Activity{
             }
         });
         Mysingleton.getnInstance(this).addToRequestQue(stringRequest);
+    }
+
+    public int getState(){
+
+        return state;
     }
 }

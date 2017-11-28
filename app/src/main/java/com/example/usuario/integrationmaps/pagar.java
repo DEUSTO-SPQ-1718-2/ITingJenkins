@@ -35,9 +35,6 @@ import java.util.Map;
 
 public class pagar extends AppCompatActivity {
 
-
-
-
     final int REQUEST_CODE = 1;
     final String get_token = "http://192.168.91.1/BraintreePayments/main.php";
     final String send_payment_details = "http://192.168.91.1/BraintreePayments/checkout.php";
@@ -47,6 +44,11 @@ public class pagar extends AppCompatActivity {
     Button btnPay;
     EditText etAmount;
     LinearLayout llHolder;
+
+    boolean pressedPayButton = false;
+    int transactionState = 0;
+
+    String stringNonce = null;
 
     Logger log = LoggerFactory.getLogger(pagar.class);
 
@@ -67,6 +69,7 @@ public class pagar extends AppCompatActivity {
             public void onClick(View v) {
 
                 //comprobar_mesas();
+                pressedPayButton = true;
                 onBraintreeSubmit();
 
             }
@@ -80,7 +83,7 @@ public class pagar extends AppCompatActivity {
             if (resultCode == Activity.RESULT_OK) {
                 DropInResult result = data.getParcelableExtra(DropInResult.EXTRA_DROP_IN_RESULT);
                 PaymentMethodNonce nonce = result.getPaymentMethodNonce();
-                String stringNonce = nonce.getNonce();
+                stringNonce = nonce.getNonce();
                 //Log.d("mylog", "Resultaaada: " + stringNonce);
                 log.debug("Clase pagar, contenido del nonce: " + stringNonce);
 
@@ -114,7 +117,7 @@ public class pagar extends AppCompatActivity {
         startActivityForResult(dropInRequest.getIntent(this), REQUEST_CODE);
     }
 
-    private void sendPaymentDetails() {
+    public void sendPaymentDetails() {
         RequestQueue queue = Volley.newRequestQueue(pagar.this);
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.POST, send_payment_details,
@@ -124,10 +127,15 @@ public class pagar extends AppCompatActivity {
                         if(response.contains("Successful"))
                         {
                             Toast.makeText(pagar.this, "Transaction successful", Toast.LENGTH_LONG).show();
+                            transactionState = 1;
                         }
-                        else Toast.makeText(pagar.this, "Transaction failed", Toast.LENGTH_LONG).show();
+                        else{
+                            Toast.makeText(pagar.this, "Transaction failed", Toast.LENGTH_LONG).show();
+                            transactionState = -1;
+                        }
                         //Log.d("mylog", "Final Response: " + response.toString());
                         log.debug("El resultado ha sido Final Response: " + response.toString());
+
                         //System.out.println("AXI " + response.toString());
 
                         //Menu de inicio.
@@ -163,6 +171,21 @@ public class pagar extends AppCompatActivity {
             }
         };
         queue.add(stringRequest);
+    }
+
+    public boolean getPressedPayButton(){
+
+        return pressedPayButton;
+    }
+
+    public int getTransactionState(){
+
+        return transactionState;
+    }
+
+    public String getStringNonce(){
+
+        return stringNonce;
     }
 
     private class HttpRequest extends AsyncTask {
