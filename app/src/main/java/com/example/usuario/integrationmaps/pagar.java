@@ -48,8 +48,6 @@ public class pagar extends AppCompatActivity {
     boolean pressedPayButton = false;
     int transactionState = 0;
 
-    String stringNonce = null;
-
     Logger log = LoggerFactory.getLogger(pagar.class);
 
     @Override
@@ -83,7 +81,7 @@ public class pagar extends AppCompatActivity {
             if (resultCode == Activity.RESULT_OK) {
                 DropInResult result = data.getParcelableExtra(DropInResult.EXTRA_DROP_IN_RESULT);
                 PaymentMethodNonce nonce = result.getPaymentMethodNonce();
-                stringNonce = nonce.getNonce();
+                String stringNonce = nonce.getNonce();
                 //Log.d("mylog", "Resultaaada: " + stringNonce);
                 log.debug("Clase pagar, contenido del nonce: " + stringNonce);
 
@@ -183,10 +181,6 @@ public class pagar extends AppCompatActivity {
         return transactionState;
     }
 
-    public String getStringNonce(){
-
-        return stringNonce;
-    }
 
     private class HttpRequest extends AsyncTask {
         ProgressDialog progress;
