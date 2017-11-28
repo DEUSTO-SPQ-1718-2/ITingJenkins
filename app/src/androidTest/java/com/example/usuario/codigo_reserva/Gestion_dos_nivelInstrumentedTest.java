@@ -27,7 +27,7 @@ public class Gestion_dos_nivelInstrumentedTest {
         Intent intent = new Intent();
 
         Bundle b = new Bundle();
-        b.putInt("pass", 213414);
+        b.putInt("pass", 342122);
         b.putInt("encriptar", 0);
 
         intent.putExtras(b);
@@ -44,7 +44,7 @@ public class Gestion_dos_nivelInstrumentedTest {
             }
         }
 
-        assertEquals(1, activityRule.getActivity().getState());
+        assertEquals(-1, activityRule.getActivity().getState());
 
     }
 }
