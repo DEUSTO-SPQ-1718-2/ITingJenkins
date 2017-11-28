@@ -7,7 +7,7 @@ jacoco {
 }
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.0"
+    buildToolsVersion "26.0.2"
     defaultConfig {
         applicationId "com.example.usuario.integrationmaps"
         minSdkVersion 16
@@ -16,16 +16,16 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-    lintOptions{
+    lintOptions {
         checkReleaseBuilds false
     }
 
     testOptions {
         unitTests.returnDefaultValues = true
     }
-    
+
     signingConfigs {
-        release{
+        release {
             storeFile file("Iting.jks")
             storePassword "passpass"
             keyAlias "Iting"
@@ -48,6 +48,7 @@ android {
 
 
 dependencies {
+    implementation 'com.android.support:support-v4:26.0.0'
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -71,6 +72,10 @@ dependencies {
     testCompile 'junit:junit:4.12'
     testCompile group: 'org.hamcrest', name: 'hamcrest-library', version: '1.3'
     testCompile group: 'org.databene', name: 'contiperf', version: '2.2.0'
+    testImplementation "org.robolectric:robolectric:3.5.1"
+    testCompile 'org.mockito:mockito-core:2.7.22'
+    androidTestCompile 'org.mockito:mockito-android:2.7.22'
+    compile 'de.hdodenhof:circleimageview:2.2.0'
 
 
 }

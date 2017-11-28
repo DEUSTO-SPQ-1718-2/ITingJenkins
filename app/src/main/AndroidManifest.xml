@@ -5,7 +5,7 @@
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
-         location permissions for the 'MyLocation' functionality. 
+         location permissions for the 'MyLocation' functionality.
     -->
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -18,10 +18,10 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:largeHeap="true">
+        android:theme="@style/AppTheme">
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -29,7 +29,7 @@
              Note that the API key is linked to the encryption key used to sign the APK.
              You need a different API key for each encryption key, including the release key that is used to
              sign the APK for publishing.
-             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -39,13 +39,12 @@
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
         <activity android:name=".SliderActivity" />
-        <activity android:name=".eCamareros" ></activity>
-
-        <activity android:name=".ActivityMain" >
-        </activity>
-        <activity android:name=".MailsPagadores"  android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".eCamareros" />
+        <activity android:name=".ActivityMain"></activity>
+        <activity
+            android:name=".MailsPagadores"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".StartActivity" />
-
         <activity android:name=".Register" />
         <activity
             android:name=".primer_listado_rests"
@@ -54,10 +53,10 @@
         <activity
             android:name=".segundo_listado_rests"
             android:label="@string/title_activity_segundo_listado_rests"
-            android:theme="@style/AppTheme"></activity>
-        <activity android:name="com.example.usuario.codigo_reserva.Gestor_codigo_reserva">
-        </activity>
-        <activity android:name="com.example.usuario.codigo_reserva.Gestion_dos_nivel"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name="com.example.usuario.codigo_reserva.Gestor_codigo_reserva"></activity>
+        <activity android:name=".perfil"></activity>
+        <activity android:name="com.example.usuario.codigo_reserva.Gestion_dos_nivel" />
         <activity android:name=".Comienzo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

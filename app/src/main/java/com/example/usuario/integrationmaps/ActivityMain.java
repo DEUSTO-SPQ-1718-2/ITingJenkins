@@ -1,38 +1,39 @@
 package com.example.usuario.integrationmaps;
 
-import android.content.Context;
+
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
 
 /**
  * Created by Vishal on 4/3/2017.
@@ -45,6 +46,10 @@ public class ActivityMain extends AppCompatActivity {
     Bitmap[] logos;
     Bitmap [] logo_ocupado;
     Button confirmar;
+
+    private DrawerLayout dl;
+    private ActionBarDrawerToggle t;
+    private NavigationView nv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +74,53 @@ public class ActivityMain extends AppCompatActivity {
         mesas = new ArrayList<>();
         obtener_mesas();
 
+        dl = (DrawerLayout)findViewById(R.id.activity_main);
+        t = new ActionBarDrawerToggle(this, dl,R.string.Open, R.string.Close);
+
+        dl.addDrawerListener(t);
+        t.syncState();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        nv = (NavigationView)findViewById(R.id.nv);
+        nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                System.out.println("idddddddddddd" + item.getItemId());
+                Intent i;
+                switch (id) {
+                    case R.id.account:
+                        Toast.makeText(ActivityMain.this, "My Account", Toast.LENGTH_SHORT).show();
+                        i = new Intent(ActivityMain.this, perfil.class);
+                        startActivity(i);
+                        return true;
+                    case R.id.settings:
+                        finish();
+                        return true;
+                    case R.id.mycart:
+                        Toast.makeText(ActivityMain.this, "My Cart", Toast.LENGTH_SHORT).show();
+                        System.out.println("ue");
+                        finishAffinity();
+                        System.exit(0);
+                        return true;
+                    default:
+                        return true;
+                }
+            }
+
+        });
+
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(t.onOptionsItemSelected(item))
+            return true;
+
+        return super.onOptionsItemSelected(item);
     }
 
     public void obtener_mesas(){
