@@ -39,6 +39,8 @@ public class Gestion_dos_nivel extends Activity{
     int i =0;
     Logger log = LoggerFactory.getLogger(Gestion_dos_nivel.class);
 
+    private int state = 0;
+
     abstract class Encryptor {
         SecretKey key;
 
@@ -155,10 +157,12 @@ public class Gestion_dos_nivel extends Activity{
                         .show();
                 fallo ="si";
                 log.error("El codigo introducido no existe o ya no es valido: " + error.getMessage());
+                state = -1;
             }
 
             if(fallo.equals("no")){
                 fallo= result;
+                state = 1;
 
             }
             updateUi(fallo);
@@ -309,5 +313,10 @@ public class Gestion_dos_nivel extends Activity{
             }
         });
         Mysingleton.getnInstance(this).addToRequestQue(stringRequest);
+    }
+
+    public int getState(){
+
+        return state;
     }
 }
