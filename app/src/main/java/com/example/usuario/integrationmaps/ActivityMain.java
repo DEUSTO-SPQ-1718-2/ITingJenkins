@@ -24,7 +24,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.usuario.utils.Respuesta;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -72,16 +71,14 @@ public class ActivityMain extends AppCompatActivity {
         logo_ocupado[0] = BitmapFactory.decodeResource(getResources(), R.drawable.mesaocupada);
         logo_ocupado[1] = BitmapFactory.decodeResource(getResources(), R.drawable.mesaseleccionada);
         mesas = new ArrayList<>();
-        this.obtener_mesas();
+        obtener_mesas();
 
     }
 
-    public boolean obtener_mesas(){
+    public void obtener_mesas(){
 
         String URL_DATA = "http://www.iting.es/ultimophp/obtener_mesas_rest_newDB2.php";
         log.debug("Se esta atacando la base de datos: " + URL_DATA);
-
-        // Respuesta respuesta = new Respuesta();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
               new Response.Listener<String>(){
@@ -145,17 +142,7 @@ public class ActivityMain extends AppCompatActivity {
 
         Mysingleton.getnInstance(this).addToRequestQue(stringRequest);
 
-        int i = 0;
-
         System.out.println("Pasa con estado " + state);
-
-        if(state == 1){
-
-            return true;
-        } else{
-
-            return false;
-        }
     }
 
     public int getState(){
@@ -252,8 +239,6 @@ public class ActivityMain extends AppCompatActivity {
             }
 
                 return pasar;
-
-
 
         }
 
