@@ -157,12 +157,12 @@ public class Gestion_dos_nivel extends Activity{
                         .show();
                 fallo ="si";
                 log.error("El codigo introducido no existe o ya no es valido: " + error.getMessage());
-                state = -1;
+
             }
 
             if(fallo.equals("no")){
                 fallo= result;
-                state = 1;
+
 
             }
             updateUi(fallo);
@@ -258,12 +258,19 @@ public class Gestion_dos_nivel extends Activity{
                 }
                 else {
                     System.out.println("resultado"+plaintext1);
+                    state = 1;
+                    System.out.println("Pasa por el state 1 !!!");
                     return;
                 }
 
                 i= i+1;
                 if(i==reservas.size()){
                     System.out.println("TERMINADO!!");
+
+                    if(state == 0){
+
+                        state = -1;
+                    }
                 }else{
                     System.out.println("Siguiente bucle!!");
                     desencriptar(i);

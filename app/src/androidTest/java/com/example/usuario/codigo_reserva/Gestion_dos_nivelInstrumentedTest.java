@@ -44,7 +44,7 @@ public class Gestion_dos_nivelInstrumentedTest {
             }
         }
 
-        assertEquals(-1, activityRule.getActivity().getState());
+        assertEquals(1, activityRule.getActivity().getState());
 
     }
 }
