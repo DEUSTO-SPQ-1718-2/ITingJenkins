@@ -48,6 +48,7 @@ public class ActivityMain extends AppCompatActivity {
     Bitmap [] logo_ocupado;
     Button confirmar;
     Logger log = LoggerFactory.getLogger(ActivityMain.class);
+    int state = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,79 +71,83 @@ public class ActivityMain extends AppCompatActivity {
         logo_ocupado[0] = BitmapFactory.decodeResource(getResources(), R.drawable.mesaocupada);
         logo_ocupado[1] = BitmapFactory.decodeResource(getResources(), R.drawable.mesaseleccionada);
         mesas = new ArrayList<>();
-        this.obtener_mesas();
+        obtener_mesas();
 
     }
 
-    public boolean obtener_mesas(){
-
-
+    public void obtener_mesas(){
 
         String URL_DATA = "http://www.iting.es/ultimophp/obtener_mesas_rest_newDB2.php";
         log.debug("Se esta atacando la base de datos: " + URL_DATA);
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
-                new Response.Listener<String>(){
-                    @Override
-                    public void onResponse(String response) {
+              new Response.Listener<String>(){
 
-                        try {
-                            JSONArray jsonArray = new JSONArray(response);
-                            System.out.println(response);
-                            log.debug("La respuesta del metodo obtener mesas: " +  response);
-                            for(int i =0;i<jsonArray.length();i++) {
-                                //System.out.println(jsonArray.length());
-                                log.debug("Tamaño del array: " + jsonArray.length());
-                                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                //System.out.println(jsonObject.getString("ocupado")+"jaaaaaa");
-                                log.debug("Valor de vble ocupado: " + jsonObject.getString("ocupado"));
-                                mesa mes =  new mesa(
-                                        jsonObject.getString("id"),
-                                        jsonObject.getString("nombre"),
-                                        jsonObject.getString("comensales"),
-                                        jsonObject.getString("ocupado"),
-                                        "",
-                                        jsonObject.getString("id_restaurante")
+                  @Override
+                  public void onResponse(String response) {
 
-                                );
-                                mesas.add(mes);
+                      try {
+                          JSONArray jsonArray = new JSONArray(response);
+                          System.out.println(response);
+                          log.debug("La respuesta del metodo obtener mesas: " +  response);
+                          for(int i =0;i<jsonArray.length();i++) {
+                              //System.out.println(jsonArray.length());
+                              log.debug("Tamaño del array: " + jsonArray.length());
+                              JSONObject jsonObject = jsonArray.getJSONObject(i);
+                              //System.out.println(jsonObject.getString("ocupado")+"jaaaaaa");
+                              log.debug("Valor de vble ocupado: " + jsonObject.getString("ocupado"));
+                              mesa mes =  new mesa(
+                                      jsonObject.getString("id"),
+                                      jsonObject.getString("nombre"),
+                                      jsonObject.getString("comensales"),
+                                      jsonObject.getString("ocupado"),
+                                      "",
+                                      jsonObject.getString("id_restaurante")
 
-                            }
-                            MyAdapter adapter = new MyAdapter(mesas, logos);
-                            rvMain.setLayoutManager(new GridLayoutManager(ActivityMain.this, 3));
-                            rvMain.setAdapter(adapter);
+                              );
+                              mesas.add(mes);
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                          }
 
+                          ActivityMain.MyAdapter adapter = new ActivityMain.MyAdapter(mesas, logos);
+                          rvMain.setLayoutManager(new GridLayoutManager(ActivityMain.this, 3));
+                          rvMain.setAdapter(adapter);
 
-                        }
-                    }
-                },new Response.ErrorListener() {
+                          System.out.println("Paso para cambiar el estado a 1");
+                          state = 1;
+
+                      } catch (JSONException e) {
+                          e.printStackTrace();
+                          System.out.println("Paso para cambiar el estado a -1");
+                          state = -1;
+                      }
+                  }
+
+              } ,new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(), "Algo ha ido mal", Toast.LENGTH_LONG).show();
+                System.out.println("Pasa por el onError Response");
                 error.printStackTrace();
-
-
             }
         }){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("restaurante_id", "26" );
+                System.out.println("Pasa por el getParams");
                 return params;
             }
         };
 
-
-
         Mysingleton.getnInstance(this).addToRequestQue(stringRequest);
 
-        return stringRequest.toString().contains("null");
+        System.out.println("Pasa con estado " + state);
+    }
 
+    public int getState(){
 
-
+        return state;
     }
 
 
@@ -234,8 +239,6 @@ public class ActivityMain extends AppCompatActivity {
             }
 
                 return pasar;
-
-
 
         }
 

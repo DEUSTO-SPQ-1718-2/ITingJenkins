@@ -26,7 +26,18 @@ public class ActivityMainTest {
 
         activityRule.launchActivity(intent);
 
+        while(activityRule.getActivity().getState() == 0){
 
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        System.out.println("Tamaño mesas: " + activityRule.getActivity().mesas.size());
+
+        assertEquals(1, activityRule.getActivity().getState());
     }
 
 }
