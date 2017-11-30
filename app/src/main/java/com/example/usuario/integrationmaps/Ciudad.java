@@ -4,6 +4,7 @@ package com.example.usuario.integrationmaps;
  * Created by Usuario on 04/10/2017.
  */
 
+/** @brief Clase representativa de las ciudades con la aplicación*/
 public class Ciudad {
 
     String municipio;

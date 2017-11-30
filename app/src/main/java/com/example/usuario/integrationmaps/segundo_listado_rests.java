@@ -109,6 +109,7 @@ public class segundo_listado_rests extends AppCompatActivity implements View.OnC
         initBoom();
     }
 
+    /** Buscar restaurante por municipio */
     public void busqueda_por_municipio(final String nombre_municipio){
 
         String URL_DATA = "http://iting.es/php/filtrado_municipio.php";

@@ -4,6 +4,7 @@ package com.example.usuario.mailsender;
  * Created by Usuario on 20/10/2017.
  */
 
+/** @brief Clase que establece la plantilla que se enviará por correo */
 public class mail_template {
 
     String envio;

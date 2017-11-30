@@ -7,6 +7,7 @@ import android.os.Parcelable;
  * Created by Usuario on 14/09/2017.
  */
 
+/** @brief Clase representativa de un restaurante */
 public final class Listitem{
 
     private String id, nombre, direccion,precio_medio, tipo, valoracion, imageURL, longi, lati;

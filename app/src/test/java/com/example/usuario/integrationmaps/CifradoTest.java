@@ -12,6 +12,7 @@ import java.util.ArrayList;
  * Created by Usuario on 09/11/2017.
  */
 
+/** Clase de test para testear el cifrado */
 public class CifradoTest {
 
     Gestion_dos_nivel a;

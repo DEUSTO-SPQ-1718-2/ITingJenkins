@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
  * Created by axi_e on 15/10/2017.
  */
 
+/** @brief Clase que gestiona el envío de correos con plantilla */
 public class MailSender extends AsyncTask<String, Integer, String> {
 
     private String nombreEmisor;

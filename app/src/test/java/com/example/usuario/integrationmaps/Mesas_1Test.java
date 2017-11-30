@@ -13,7 +13,7 @@ import static org.hamcrest.Matchers.is;
 /**
  * Created by Usuario on 10/11/2017.
  */
-
+/** @brief Clase para testear mesas */
 public class Mesas_1Test {
     mesa a;
 

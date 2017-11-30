@@ -34,6 +34,7 @@ import java.util.Map;
  * Created by Usuario on 14/09/2017.
  */
 
+/** @brief Clase para gestionar la visualización de un restaurante */
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     private List<Listitem> listItem;
@@ -47,7 +48,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         System.out.println(listItem.size()+"?????????????????");
     }
 
-    //Este metodo es llamado cada vez que se genera una instancia de clase de Abajo
+    /** Este método es llamado cada vez que se genera una instancia de clase de abajo */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
@@ -56,7 +57,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         return new ViewHolder(v);
     }
 
-    //Este segundo método se llama una vez el anterior ha sido llamado. Enseña el dato al recyclerviw
+    /**Este segundo método se llama una vez el anterior ha sido llamado. Enseña el dato al recyclerview */
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
@@ -151,6 +152,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         }
     }
 
+    /** Método para cargar la imagen del restaurante */
     public void cargarimagen(final Picasso.Builder builder, final String id, final ViewHolder holder){
 
         String login_url= "http://iting.es/php/imagen_portada.php";

@@ -40,6 +40,7 @@ import java.util.Map;
  * Created by Vishal on 4/3/2017.
  */
 
+/** @brief Clase asociada a la pantalla de elegir las mesas para la reserva */
 public class ActivityMain extends AppCompatActivity {
 
     RecyclerView rvMain;
@@ -49,12 +50,14 @@ public class ActivityMain extends AppCompatActivity {
     Button confirmar;
     Logger log = LoggerFactory.getLogger(ActivityMain.class);
 
+    /** Constructor de la ventana de elección de mesas*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         confirmar = (Button)findViewById(R.id.confirmar);
         confirmar.setOnClickListener(new View.OnClickListener() {
+            /** Listener que lleva a la pestaña de nº eCamareros */
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
@@ -74,6 +77,7 @@ public class ActivityMain extends AppCompatActivity {
 
     }
 
+    /** Método para pintar las mesas en pantalla */
     public boolean obtener_mesas(){
 
 
@@ -91,10 +95,8 @@ public class ActivityMain extends AppCompatActivity {
                             System.out.println(response);
                             log.debug("La respuesta del metodo obtener mesas: " +  response);
                             for(int i =0;i<jsonArray.length();i++) {
-                                //System.out.println(jsonArray.length());
                                 log.debug("Tamaño del array: " + jsonArray.length());
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                //System.out.println(jsonObject.getString("ocupado")+"jaaaaaa");
                                 log.debug("Valor de vble ocupado: " + jsonObject.getString("ocupado"));
                                 mesa mes =  new mesa(
                                         jsonObject.getString("id"),
@@ -146,7 +148,7 @@ public class ActivityMain extends AppCompatActivity {
     }
 
 
-
+    /** Adaptador que coge los datos de las mesas de la BD y se los pasa a la view*/
     private class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
         ArrayList<mesa> mesas;
@@ -244,6 +246,8 @@ public class ActivityMain extends AppCompatActivity {
             return mesas.size();
         }
     }
+
+    /** Vista que recibe las mesas del adaptador*/
     private class MyViewHolder extends RecyclerView.ViewHolder{
 
         public ImageView logo;

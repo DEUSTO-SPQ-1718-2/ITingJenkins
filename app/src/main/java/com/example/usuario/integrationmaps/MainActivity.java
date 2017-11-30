@@ -21,6 +21,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+/** @brief Clase para gestionar la carga de restaurantes */
 public class MainActivity extends AppCompatActivity {
 
    private static final String URL_DATA = "http://iting.es/php/volley.php";
@@ -42,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    /** Método para cargar los restaurantes */
     private void loadRecyclerViewData(){
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading data...");

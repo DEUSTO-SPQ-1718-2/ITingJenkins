@@ -18,6 +18,7 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 
+/** @brief Clase para encriptar y desencriptar la clave */
 public class Crypto_dos_nivel {
 
     private static final String TAG = Crypto_dos_nivel.class.getSimpleName();
@@ -78,7 +79,7 @@ public class Crypto_dos_nivel {
     }
 
 
-
+    /** Encriptado */
     public static String encrypt(String plaintext, SecretKey key, byte[] salt) {
         try {
             Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);
@@ -127,6 +128,7 @@ public class Crypto_dos_nivel {
     }
 
 
+    /** Desencriptado */
     public static String decrypt(byte[] cipherBytes, SecretKey key, byte[] iv) {
         try {
             Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);

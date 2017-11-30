@@ -21,11 +21,12 @@ import java.util.ArrayList;
  * Created by ALUMNO on 17/10/2017.
  */
 
+/** @brief Clase representativa de la ventana de introducción de correos */
 public class MailsPagadores extends AppCompatActivity {
 
     private LinearLayout parentLinearLayout;
 
-    //¿? Añadir evento botón enviar para link dorron
+    //¿? Añadir evento botón enviar para link - Dorron
 
     Button boton_enviar;
 
@@ -55,6 +56,7 @@ public class MailsPagadores extends AppCompatActivity {
     }
     //¿?
 
+    /** Método para obtener el texto de las cajas */
     public void obtener_contenido() {
 
         String para_envio="";
@@ -104,6 +106,7 @@ public class MailsPagadores extends AppCompatActivity {
 
     }
 
+    /** Método para pintar las cajas donde meter los correos */
     public void aniadir_conbucle(int variable){
 
         for(int i=0;i<variable;i++){

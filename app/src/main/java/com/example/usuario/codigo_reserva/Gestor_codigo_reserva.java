@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 import javax.crypto.SecretKey;
 
+/** @brief Clase que gestiona el código de reserva */
 public class Gestor_codigo_reserva extends Activity {
 
     private static final String TAG = Gestor_codigo_reserva.class.getSimpleName();
