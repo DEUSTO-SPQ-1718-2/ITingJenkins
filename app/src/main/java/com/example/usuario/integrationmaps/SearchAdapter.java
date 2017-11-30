@@ -21,6 +21,7 @@ import java.util.ArrayList;
  * Created by Usuario on 04/10/2017.
  */
 
+/** @brief Clase de textbox de búsqueda */
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHolder> {
 
     ArrayList<Ciudad>arrayList = new ArrayList<>();

@@ -11,6 +11,7 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 
+/** @brief Clase para encriptar password */
 public class Crypto {
 
     private static final String TAG = Crypto.class.getSimpleName();

@@ -19,6 +19,7 @@ import java.util.List;
  * Created by Martín Beitia on 17/10/2017.
  */
 
+/** @brief Clase representativa de la ventana para elegir nº eCamareros */
 public class eCamareros extends AppCompatActivity {
 
 
@@ -39,7 +40,7 @@ public class eCamareros extends AppCompatActivity {
 
         ok_bn.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view) {
+            public void onClick(View view) { /** Botón para saltar a la ventana de introducción de correos */
                 numero = Integer.parseInt(valor.getText().toString());
 
                 if(numero<=0 || !(numero instanceof Integer)){
@@ -61,6 +62,7 @@ public class eCamareros extends AppCompatActivity {
 
     }
 
+    /** Método para alertar de que el valor introducido no es el correcto */
     public void displayAlert(final String code){
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override

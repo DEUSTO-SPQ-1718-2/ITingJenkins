@@ -4,6 +4,7 @@ package com.example.usuario.codigo_reserva;
  * Created by Usuario on 19/10/2017.
  */
 
+/** @brief Clase representativa de una reserva en la app */
 public class Reserva {
 
     String id, codigo, id_mesa;

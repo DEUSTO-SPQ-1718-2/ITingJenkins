@@ -27,6 +27,7 @@ import java.util.Map;
 
 import javax.crypto.SecretKey;
 
+/** @brief Clase que gestiona las llamadas a los métodos de encriptación */
 public class Gestion_dos_nivel extends Activity{
 
     private static final String TAG = Gestion_dos_nivel.class.getSimpleName();
@@ -192,6 +193,7 @@ public class Gestion_dos_nivel extends Activity{
         System.out.println(ciphertext1);
     }
 
+    /** Actualiza la base de datos */
     public void update_DB(){
 
         final String mesa_id="1";
@@ -283,6 +285,7 @@ public class Gestion_dos_nivel extends Activity{
         }
 
 
+    /** Recupera la reserva de un código de reserva existente */
     public void  recuperar_reservas(){
         String URL_DATA = "http://www.iting.es/ultimophp/recuperar_reservas_newDB.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,

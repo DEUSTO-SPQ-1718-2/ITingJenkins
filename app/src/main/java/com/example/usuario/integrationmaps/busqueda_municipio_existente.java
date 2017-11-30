@@ -24,6 +24,7 @@ import java.util.Map;
  * Created by Usuario on 06/10/2017.
  */
 
+/** @brief Clase para buscar municipios que dispongan de la aplicación */
 public class busqueda_municipio_existente {
 
 
@@ -38,6 +39,7 @@ public class busqueda_municipio_existente {
         busqueda_por_municipio(nombre_municipio);
     }
 
+    /** Método para buscar por municipios */
     public void busqueda_por_municipio(final String nombre_municipio){
 
         String URL_DATA = "http://iting.es/php/filtrado_rest.php";

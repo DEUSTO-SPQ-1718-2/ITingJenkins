@@ -24,6 +24,7 @@ import java.util.Map;
  * Created by Usuario on 06/10/2017.
  */
 
+/** @brief Clase para buscar restaurantes con la aplicación */
 public class busqueda_restaurante_existente {
 
     String nombre_rest;
@@ -36,6 +37,7 @@ public class busqueda_restaurante_existente {
         busqueda_rest(nombre_rest);
     }
 
+    /** Método para buscar por restaurantes */
     public void busqueda_rest(final String nombre_rest){
         String URL_DATA = "http://iting.es/php/filtrado_rest.php";
 
@@ -88,6 +90,7 @@ public class busqueda_restaurante_existente {
 
     }
 
+    /** Método para saltar a la actividad de información de restaurante*/
     public void empezar_newactividad(){
         Bundle b = new Bundle();
         b.putString("restaurante_id", item.getId());

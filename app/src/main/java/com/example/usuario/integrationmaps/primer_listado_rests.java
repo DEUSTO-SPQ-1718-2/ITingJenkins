@@ -43,7 +43,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Random;
 
-
+/** @brief Clase representativa de la ventana que lista los restaurantes */
 public class primer_listado_rests extends AppCompatActivity implements  View.OnClickListener, BoomMenuButton.OnSubButtonClickListener, SearchView.OnQueryTextListener{
 
     private static final String URL_DATA = "http://iting.es/php/volley.php";
@@ -121,6 +121,7 @@ public class primer_listado_rests extends AppCompatActivity implements  View.OnC
         initBoom();
     }
 
+    /** Cargar los restaurantes */
     private void loadRecyclerViewData(){
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading data...");
@@ -200,7 +201,7 @@ public class primer_listado_rests extends AppCompatActivity implements  View.OnC
             public void onViewDetachedFromWindow(View arg0) {
                 // search was detached/closed
 
-                System.out.println("porque coño no pasaaaaaaaaaaas!!");
+                System.out.println("por qué coño no pasaaaaaaaaaaas!!");
                 ScrollView sv = (ScrollView)findViewById(R.id.scroll);
                 sv.scrollTo(0, sv.getTop());
                 LinearLayout a = (LinearLayout) findViewById(R.id.listado_busqueda);
@@ -248,6 +249,7 @@ public class primer_listado_rests extends AppCompatActivity implements  View.OnC
     }
 
 
+    /** Buscar los restaurantes por ciudad */
     public void getObjetosTexto_iting(final String newText){
         String URL_DATA = "http:/iting.es/php/Filtrado.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
@@ -301,6 +303,7 @@ public class primer_listado_rests extends AppCompatActivity implements  View.OnC
         requestQueue.add(stringRequest);
     }
 
+    /** Buscar los restaurantes por platos */
     public void getPlatos(final String newText){
         String URL_DATA = "http:/iting.es/php/Filtrado_platos.php";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,

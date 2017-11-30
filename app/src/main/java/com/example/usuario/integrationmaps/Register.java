@@ -24,6 +24,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+/** @brief Clase representativa de la ventana de registro de usuario */
 public class Register extends AppCompatActivity {
 
     Button reg_bn;
@@ -51,6 +52,7 @@ public class Register extends AppCompatActivity {
 
         reg_bn.setOnClickListener(new View.OnClickListener(){
 
+            /** Action listener del botón de registrar */
             @Override
             public void onClick(View view) {
                 Nombre= nombre.getText().toString();
@@ -122,6 +124,7 @@ public class Register extends AppCompatActivity {
         });
     }
 
+    /** Registro fallido o exitoso */
     public void displayAlert(final String code){
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override

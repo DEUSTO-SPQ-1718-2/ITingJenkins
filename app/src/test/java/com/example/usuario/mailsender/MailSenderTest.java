@@ -8,6 +8,7 @@ import static org.junit.Assert.*;
 /**
  * Created by axi_e on 10/11/2017.
  */
+/** @brief Clase para testear envío de correo */
 public class MailSenderTest {
 
     private MailSender mailsender;

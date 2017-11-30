@@ -18,6 +18,7 @@ import java.util.List;
  * Created by Usuario on 16/09/2017.
  */
 
+/** @brief Clase para pintar el menú de platos */
 public class Adpaterm_menu extends RecyclerView.Adapter<Adpaterm_menu.ViewHolder> {
 
     private List<Entradamenu> listItem;
@@ -31,9 +32,7 @@ public class Adpaterm_menu extends RecyclerView.Adapter<Adpaterm_menu.ViewHolder
         log.debug("Tamaño de la lista de menu: " + listItem.size());
     }
 
-    //Este metodo es llamado cada vez que se genera una instancia de clase de Abajo
-
-
+    /** Este metodo es llamado cada vez que se genera una instancia de clase de abajo */
     @Override
     public Adpaterm_menu.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
@@ -43,7 +42,7 @@ public class Adpaterm_menu extends RecyclerView.Adapter<Adpaterm_menu.ViewHolder
     }
 
 
-    //Este segundo método se llama una vez el anterior ha sido llamado. Enseña el dato al recyclerviw
+    /**Este segundo método se llama una vez el anterior ha sido llamado. Enseña el dato al recyclerview */
     @Override
     public void onBindViewHolder(Adpaterm_menu.ViewHolder holder, int position) {
     //System.out.println("ppppppppppppppppppppppppp" + position);

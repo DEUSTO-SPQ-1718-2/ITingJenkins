@@ -17,6 +17,7 @@ import static org.junit.Assert.*;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
+/** Clase de tests con contiperf */
 public class ExampleUnitTest {
 
     Logger log = LoggerFactory.getLogger(ActivityMain.class);

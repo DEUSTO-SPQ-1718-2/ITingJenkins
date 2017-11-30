@@ -46,6 +46,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+/** @brief Clase representativa de la localización de un restaurante en el mapa */
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, View.OnClickListener, BoomMenuButton.OnSubButtonClickListener
 {
 
@@ -112,7 +113,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
-       /* codigo que antes había mMap = googleMap;
+       /** codigo que antes había mMap = googleMap;
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         LatLng asador = new LatLng(43.269818, -2.023312);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(asador));
@@ -141,6 +142,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });*/
     }
 
+    /** Método para establecer latitud y longitud */
     public void addMarkers(){
         LatLng sydney = new LatLng(-33.86997, 151.2089);
         LatLng asador = new LatLng(43.269818, -2.023312);

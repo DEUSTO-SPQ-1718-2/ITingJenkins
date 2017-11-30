@@ -10,6 +10,7 @@ import android.widget.EditText;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/** @brief Clase representativa de la ventana de introducción de código */
 public class introducir_codigo extends AppCompatActivity {
 
     Button check;
@@ -35,7 +36,7 @@ public class introducir_codigo extends AppCompatActivity {
 
         check.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) { /** Listener para recoger el código y pasarlo a la parte de cifrado */
                 System.out.println(primero.getText());
                 String nombre = primero.getText().toString()+segundo.getText().toString()+tercero.getText().toString()+cuarto.getText().toString()+qinto.getText().toString()+sexto.getText().toString();
 

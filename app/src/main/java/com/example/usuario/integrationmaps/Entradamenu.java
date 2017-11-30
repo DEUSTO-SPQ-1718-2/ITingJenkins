@@ -4,6 +4,7 @@ package com.example.usuario.integrationmaps;
  * Created by Usuario on 16/09/2017.
  */
 
+/** @brief Clase representativa de un plato */
 public class Entradamenu {
 
     String nombreplato, precio, tipo;

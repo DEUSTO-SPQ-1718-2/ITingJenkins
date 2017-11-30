@@ -7,6 +7,7 @@ import java.security.Provider;
  * Created by axi_e on 15/10/2017.
  */
 
+/** @brief Clase proveedora de Java Secure Socket Extension */
 public class JSSEProvider extends Provider {
 
     public JSSEProvider(){

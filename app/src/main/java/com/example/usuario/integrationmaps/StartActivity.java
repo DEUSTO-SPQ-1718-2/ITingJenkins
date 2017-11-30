@@ -24,6 +24,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+/** @brief Clase representativa de la ventana de inicio de sesión */
 public class StartActivity extends AppCompatActivity {
 
     Button login_button;
@@ -52,7 +53,7 @@ public class StartActivity extends AppCompatActivity {
         pasahitza = (EditText)findViewById(R.id.contra);
 
 
-
+        /** action listener de botón de inicio de sesión */
         login_button.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -111,6 +112,7 @@ public class StartActivity extends AppCompatActivity {
             }
         });
     }
+    /** Caja de diálogo con mensaje */
     public void displayAlert(String message){
         builder.setMessage(message);
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {

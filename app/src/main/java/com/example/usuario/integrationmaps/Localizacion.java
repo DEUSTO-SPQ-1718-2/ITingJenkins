@@ -18,6 +18,7 @@ import android.widget.TextView;
  * Created by Usuario on 14/09/2017.
  */
 
+/** @brief Clase para gestionar la localización de los restaurantes */
 public class Localizacion extends Service implements LocationListener {
 
     private final Context context;
@@ -27,7 +28,7 @@ public class Localizacion extends Service implements LocationListener {
     Location location;
     boolean gpsActivo;
     TextView texto;
-    LocationManager locationManager;//Me permite conectar el tipo de conexion
+    LocationManager locationManager; /** @var Me permite conectar el tipo de conexión */
 
     public Localizacion() {
         super();
@@ -71,7 +72,7 @@ public class Localizacion extends Service implements LocationListener {
         try{
 
             locationManager=(LocationManager)this.context.getSystemService(LOCATION_SERVICE);
-            //El location_service me dar la opcion a obtener las coordenadas. El objeto locationmanager que devuelve permite eso.
+            /** El location_service me dar la opción a obtener las coordenadas. El objeto locationmanager que devuelve permite eso */
             gpsActivo = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 
         }catch(Exception e){

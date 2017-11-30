@@ -9,16 +9,18 @@ import java.util.ArrayList;
  * Created by Usuario on 18/10/2017.
  */
 
+/** @brief Clase representativa de la mesa que se muestra en la pantalla de elegir mesas*/
+
 public class mesa {
 
     public String id, nombre, restaurante;
     public int comensales;
-    public ArrayList<Integer> vinculadas;
+    public ArrayList<Integer> vinculadas; /** @var Número de mesas vinculadas a esta que se pueden reservar a la vez */
     boolean ocupado;
     boolean seleccionado;
     Logger log = LoggerFactory.getLogger(ActivityMain.class);
 
-    public mesa(String id, String nombre,  String comensales, String ocupado, String vinculadas, String restaurante) {
+    public mesa(String id, String nombre,  String comensales, String ocupado, String vinculadas, String restaurante) { /** Constructor de la clase */
         this.id = id;
         this.nombre = nombre;
         this.comensales = Integer.parseInt(comensales);

@@ -42,7 +42,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+/** @brief Clase que carga un restaurante con sus platos */
 public class SliderActivity extends MapsActivity implements OnMapReadyCallback {
 
     ViewPager viewPager;
@@ -149,6 +149,7 @@ public class SliderActivity extends MapsActivity implements OnMapReadyCallback {
 
     }
 
+    /** Carga los platos */
     private void loadRecyclerViewData(){
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DATA,
@@ -206,6 +207,7 @@ public class SliderActivity extends MapsActivity implements OnMapReadyCallback {
         requestQueue.add(stringRequest);
     }
 
+    /** Pinta los platos */
     public void aniadir_conbucle(String nombre, List<Entradamenu> variable){
 
         LayoutInflater inflater1 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -271,6 +273,7 @@ public class SliderActivity extends MapsActivity implements OnMapReadyCallback {
 
     }
 
+    /** Gestiona localización de restaurante */
     @Override
     public void onMapReady(GoogleMap googleMap) {
 

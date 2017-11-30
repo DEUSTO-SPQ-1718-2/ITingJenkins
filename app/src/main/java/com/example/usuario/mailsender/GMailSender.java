@@ -17,6 +17,7 @@ import javax.mail.internet.MimeMultipart;
  * Created by axi_e on 15/10/2017.
  */
 
+/** @brief Clase que gestiona el envío de correos electrónicos */
 public class GMailSender extends javax.mail.Authenticator {
 
 
@@ -55,6 +56,7 @@ public class GMailSender extends javax.mail.Authenticator {
 
     }
 
+    /** Método para enviar mails */
     public synchronized void sendMail(String subject, String body, String sender, String recipients) throws Exception {
         try{
             MimeMessage message = new MimeMessage(session);

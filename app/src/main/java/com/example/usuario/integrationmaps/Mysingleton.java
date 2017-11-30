@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
  * Created by Usuario on 10/09/2017.
  */
 
+/** @brief Clase para gestionar las requests */
 public class Mysingleton {
 
     private static Mysingleton nInstance;
