@@ -40,6 +40,7 @@ import java.util.Map;
  * Created by Vishal on 4/3/2017.
  */
 
+/** @brief Clase asociada a la pantalla de elegir las mesas para la reserva */
 public class ActivityMain extends AppCompatActivity {
 
     RecyclerView rvMain;
@@ -50,6 +51,7 @@ public class ActivityMain extends AppCompatActivity {
     Logger log = LoggerFactory.getLogger(ActivityMain.class);
     int state = 0;
 
+    /** Constructor de la ventana de elección de mesas*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +59,7 @@ public class ActivityMain extends AppCompatActivity {
         confirmar = (Button)findViewById(R.id.confirmar);
         confirmar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view) {  /** Listener que lleva a la pestaña de nº eCamareros */
                 Intent intent = new Intent();
                 intent.setClass(getApplicationContext(), eCamareros.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -75,6 +77,7 @@ public class ActivityMain extends AppCompatActivity {
 
     }
 
+    /** Método para pintar las mesas en pantalla */
     public void obtener_mesas(){
 
         String URL_DATA = "http://www.iting.es/ultimophp/obtener_mesas_rest_newDB2.php";
@@ -151,7 +154,7 @@ public class ActivityMain extends AppCompatActivity {
     }
 
 
-
+    /** Adaptador que coge los datos de las mesas de la BD y se los pasa a la view*/
     private class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
         ArrayList<mesa> mesas;
@@ -187,7 +190,7 @@ public class ActivityMain extends AppCompatActivity {
                     System.out.println(mesas.get(position).isOcupado()+"***");
                     System.out.println(mesas.get(position).isSeleccionado()+"^^^^");
                     if(mesas.get(position).isOcupado()==false && mesas.get(position).isSeleccionado()== false) {
-                        //metodo de comprobaciones de vinculados
+                        /**metodo de comprobaciones de vinculados */
                         boolean sepuede = comprobar(position);
                         if(sepuede) {
 
@@ -247,6 +250,8 @@ public class ActivityMain extends AppCompatActivity {
             return mesas.size();
         }
     }
+
+    /** Vista que recibe las mesas del adaptador*/
     private class MyViewHolder extends RecyclerView.ViewHolder{
 
         public ImageView logo;

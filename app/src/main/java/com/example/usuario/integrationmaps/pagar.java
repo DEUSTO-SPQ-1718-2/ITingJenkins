@@ -33,6 +33,7 @@ import org.slf4j.LoggerFactory;
 import java.util.HashMap;
 import java.util.Map;
 
+/** @brief Clase para gestionar los pagos de la app */
 public class pagar extends AppCompatActivity {
 
     final int REQUEST_CODE = 1;
@@ -85,8 +86,8 @@ public class pagar extends AppCompatActivity {
                 //Log.d("mylog", "Resultaaada: " + stringNonce);
                 log.debug("Clase pagar, contenido del nonce: " + stringNonce);
 
-                // Send payment price with the nonce
-                // use the result to update your UI and send the payment method nonce to your server
+                /** Send payment price with the nonce */
+                /** use the result to update your UI and send the payment method nonce to your server */
                 if (!etAmount.getText().toString().isEmpty()) {
                     amount = etAmount.getText().toString();
                     paramHash = new HashMap<>();
@@ -97,11 +98,11 @@ public class pagar extends AppCompatActivity {
                     Toast.makeText(pagar.this, "Please enter a valid amount.", Toast.LENGTH_SHORT).show();
 
             } else if (resultCode == Activity.RESULT_CANCELED) {
-                // the user canceled
+                /** the user canceled */
                 //Log.d("mylog", "user canceled");
                 log.error("La actividad de pagar ha sido cancelada, usuario cancelado ");
             } else {
-                // handle errors here, an exception may be available in
+                /** handle errors here, an exception may be available in */
                 Exception error = (Exception) data.getSerializableExtra(DropInActivity.EXTRA_ERROR);
                 //Log.d("mylog", "Error : " + error.toString());
                 log.debug("Error : " + error.toString());
@@ -109,12 +110,14 @@ public class pagar extends AppCompatActivity {
         }
     }
 
+    /** Método para lanzar la request a Braintree */
     public void onBraintreeSubmit() {
         DropInRequest dropInRequest = new DropInRequest()
                 .clientToken(token);
         startActivityForResult(dropInRequest.getIntent(this), REQUEST_CODE);
     }
 
+    /** Método para comprobar si la transacción ha sido exitosa o no */
     public void sendPaymentDetails() {
         RequestQueue queue = Volley.newRequestQueue(pagar.this);
         // Request a string response from the provided URL.
@@ -195,6 +198,7 @@ public class pagar extends AppCompatActivity {
             progress.show();
         }
 
+        /** Obtener token para pago */
         @Override
         protected Object doInBackground(Object[] objects) {
             HttpClient client = new HttpClient();
