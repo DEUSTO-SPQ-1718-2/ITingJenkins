@@ -16,7 +16,7 @@ public class perfil extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_perfil);
+        setContentView(R.layout.content_perfil);
         boton = (Button)findViewById(R.id.button3);
 
         boton.setOnClickListener(new View.OnClickListener() {
