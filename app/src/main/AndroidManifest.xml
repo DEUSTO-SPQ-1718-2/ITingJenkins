@@ -14,7 +14,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -41,7 +41,7 @@
             android:label="@string/title_activity_maps" />
         <activity android:name=".SliderActivity" />
         <activity android:name=".eCamareros" />
-        <activity android:name=".ActivityMain"></activity>
+        <activity android:name=".ActivityMain" />
         <activity
             android:name=".MailsPagadores"
             android:windowSoftInputMode="adjustPan" />
@@ -55,8 +55,8 @@
             android:name=".segundo_listado_rests"
             android:label="@string/title_activity_segundo_listado_rests"
             android:theme="@style/AppTheme" />
-        <activity android:name="com.example.usuario.codigo_reserva.Gestor_codigo_reserva"></activity>
-        <activity android:name=".perfil"></activity>
+        <activity android:name="com.example.usuario.codigo_reserva.Gestor_codigo_reserva" />
+        <activity android:name=".perfil" />
         <activity android:name="com.example.usuario.codigo_reserva.Gestion_dos_nivel" />
         <activity android:name=".Comienzo">
             <intent-filter>
@@ -89,6 +89,10 @@
                 <data android:scheme="${applicationId}.braintree" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".perfilTestActivity"
+            android:label="@string/title_activity_perfil_test"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
