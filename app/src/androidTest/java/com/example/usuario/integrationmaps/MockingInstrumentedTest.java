@@ -39,37 +39,37 @@ public class MockingInstrumentedTest {
 
     @Test
     public void pruebas(){
-        Obtener_Mesas mesa = mock(Obtener_Mesas.class);
-        when(mesa.obtener_mesas()).thenReturn(mesas);
-        assertThat(mesas.get(0).getNombre(), is("2"));
-
-        int respuesta = mesa.validarReserva(mesas);
-
-        if(respuesta==0) {
-            assertThat(respuesta, is(equalTo(0)));
-
-            //ArrayList<String> a= mesa.obtener_datos();
-            Intent intent = new Intent();
-
-            Bundle bundle = new Bundle();
-            bundle.putString("nombre", "Asier");
-            bundle.putString("edad", "25");
-            bundle.putString("ciudad", "Urnieta");
-            intent.putExtras(bundle);
-
-            activityRule.launchActivity(intent);
-
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-
-        }else{
-            assertThat(respuesta, is(equalTo(0)));
-            System.out.println("ha dado un error");
-        }
+//        Obtener_Mesas mesa = mock(Obtener_Mesas.class);
+//        when(mesa.obtener_mesas()).thenReturn(mesas);
+//        assertThat(mesas.get(0).getNombre(), is("2"));
+//
+//        int respuesta = mesa.validarReserva(mesas);
+//
+//        if(respuesta==0) {
+//            assertThat(respuesta, is(equalTo(0)));
+//
+//            //ArrayList<String> a= mesa.obtener_datos();
+//            Intent intent = new Intent();
+//
+//            Bundle bundle = new Bundle();
+//            bundle.putString("nombre", "Asier");
+//            bundle.putString("edad", "25");
+//            bundle.putString("ciudad", "Urnieta");
+//            intent.putExtras(bundle);
+//
+//            activityRule.launchActivity(intent);
+//
+//            try {
+//                Thread.sleep(100);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//
+//
+//        }else{
+//            assertThat(respuesta, is(equalTo(0)));
+//            System.out.println("ha dado un error");
+//        }
 
 
 

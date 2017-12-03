@@ -1,6 +1,10 @@
 apply plugin: 'com.android.application'
 apply plugin: 'jacoco'
 
+jacoco {
+    toolVersion = "0.7.4+"
+}
+
 android {
     compileSdkVersion 26
     buildToolsVersion "26.0.2"
